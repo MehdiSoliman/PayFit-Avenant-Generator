@@ -69,13 +69,18 @@ npm run preview  # Prévisualiser le build de production
 
 ### Netlify (recommandé)
 
-1. **Build Settings** :
+Le projet est configuré pour Netlify avec `netlify.toml` :
+
+1. **Configuration automatique** :
    - Build command: `npm run build`
    - Publish directory: `dist`
+   - Headers MIME corrects pour les modules ES6
+   - Redirections SPA pour React Router
 
 2. **Déploiement automatique** :
    - Connectez votre repository GitHub
-   - Netlify détecte automatiquement Vite
+   - Netlify utilise automatiquement `netlify.toml`
+   - Pas de configuration manuelle nécessaire
 
 ### Autres plateformes
 
@@ -94,6 +99,12 @@ src/
 ├── docxGenerator.js        # Génération des documents DOCX
 ├── index.css              # Styles globaux avec SF Pro Display
 └── main.jsx               # Point d'entrée React
+
+public/
+├── _redirects             # Configuration SPA routing pour Netlify
+└── _headers               # Headers de sécurité HTTP
+
+netlify.toml               # Configuration principale Netlify
 ```
 
 ## 🎨 Personnalisation

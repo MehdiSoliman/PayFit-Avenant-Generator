@@ -54,6 +54,34 @@ Uses the `docx` library to create professionally formatted Word documents with:
 - `lucide-react` - Icon library for UI elements
 - `tailwindcss` - Utility-first CSS framework
 
+## Deployment
+
+The application is deployed on Netlify with the following configuration:
+
+### Netlify Configuration
+- **Build command**: `npm run build`
+- **Publish directory**: `dist`
+- **Node version**: 18+
+
+### Key Files
+- **`netlify.toml`** - Main Netlify configuration with build settings, headers, and redirects
+- **`public/_redirects`** - SPA routing fallback (backup for netlify.toml)
+- **`public/_headers`** - HTTP security headers (backup for netlify.toml)
+
+### MIME Type Handling
+The project includes specific configuration to handle JavaScript module MIME types correctly on Netlify:
+- Forces `Content-Type: application/javascript; charset=utf-8` for all .js files
+- Resolves "Expected JavaScript module but got application/octet-stream" errors
+
+### SPA Routing
+All routes redirect to `/index.html` with status 200 to support React Router client-side routing.
+
 ## Development Notes
 
 The application targets French employment law and generates legally compliant contract amendments. All text templates and UI copy are in French. The form validation is primarily client-side with required field indicators in the UI.
+
+### Troubleshooting Netlify Deployment
+If you encounter MIME type errors:
+1. Ensure `netlify.toml` is present in the root
+2. Check that build settings match the configuration
+3. Verify headers are properly applied in browser DevTools
